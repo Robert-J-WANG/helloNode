@@ -16,7 +16,7 @@ In the project directory, you can run:
 ### `node server.js`
 
 Runs the app serser in the development mode.\
-Open [http://localhost:5001] 
+Open [http://localhost:5001](http://localhost:5001) 
 
 ## deploy
 ### frontend deploy on gitHub Pages
