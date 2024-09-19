@@ -27,15 +27,15 @@ Open [http://localhost:5001](http://localhost:5001)
 ## setup project setps:
 
 ### 1. frontend : 
-[frontend-setup](./hello-frontend/frontend-setup.md)
+[setup-frontend](./hello-frontend/setup-frontend.md)
 
 ### 2. backend : 
-[backend-setup](./hello-backend/backend-setup.md)
+[setup-backend](./hello-backend/setup-backend.md)
 
 ## deploy project setps:
 
 ### 1. frontend : 
-[frontend-deploy](./hello-frontend/frontend-deploy.md)
+[deploy-frontend](./hello-frontend/deploy-frontend.md)
 
 ### 2. backend : 
-[backend-deploy](./hello-backend/backend-deploy.md)
+[deploy-backend](./hello-backend/deploy-backend.md)
