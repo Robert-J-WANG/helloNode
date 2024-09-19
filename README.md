@@ -2,7 +2,7 @@
 
 ## Overview
 
-### 1. frontend : React.js
+### 1. Frontend : React.js
 
 In the project directory, you can run:
 
@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 #### deploy on `gitHub Pages`
 
-### 2. backend : Express.js
+### 2. Backend : Express.js
 
 #### database : Mongo DB
 
@@ -27,18 +27,19 @@ Open [http://localhost:5001](http://localhost:5001)
 #### deploy on heroku
 
 
-## setup project setps:
+## Setup project steps:
 
-### 1. frontend : 
+### 1. Frontend : 
 [frontend-setup](./hello-frontend/frontend-setup.md)
 
-### 2. backend : 
+### 2. Backend : 
 [backend-setup](./hello-backend/backend-setup.md)
 
-## deploy project setps:
 
-### 1. frontend : 
+## Deploy project steps:
+
+### 1. Frontend : 
 [frontend-deploy](./hello-frontend/frontend-deploy.md)
 
-### 2. backend : 
+### 2. Backend : 
 [backend-deploy](./hello-backend/backend-deploy.md)
