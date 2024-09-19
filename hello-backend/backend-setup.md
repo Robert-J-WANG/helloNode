@@ -1,41 +1,93 @@
-# Model 1: React + Express
+## Express.js setup steps
 
-## frontend : React.js
+1. 初始化项目
 
-In the project directory, you can run:
+    项目文件夹下创建后端项目目录backend并初始化 `package.json`：
 
-### `npm start`
+    ```bash
+    npm init -y
+    ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. 安装 Express 和 MongoDB 驱动
 
-## backend : Express.js
+    后端项目目录backend下进入终端，执行
 
-### database : Mongo DB
+    ```bash
+    npm install express mongoose cors
+    ```
 
-In the project directory, you can run:
+    **express**: 用于创建服务器。
 
-### `node server.js`
+    **mongoose**: MongoDB 的对象数据模型（ODM），方便与数据库交互。
 
-Runs the app serser in the development mode.\
-Open [http://localhost:5001](http://localhost:5001) 
+    **cors**: 处理跨域问题，允许前端与后端通信。
 
-## deploy
-### frontend deploy on gitHub Pages
-### backend deploy on heroku
+3. 创建 Express 应用
 
-## setup project setps:
+    创建 `server.js` 文件，设置基本的 Express 服务器：
 
-### 1. frontend : 
-[setup-frontend](./hello-frontend/setup-frontend.md)
+    ```js
+    
+    import express from 'express'
+    import mongoose from 'mongoose'
+    import cors from 'cors'
+    
+    const app = express();
+    // 中间件
+    app.use(cors());
+    app.use(express.json());
+    
+    // 连接 MongoDB 数据库
+    mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true })
+      .then(() => console.log('Connected to MongoDB'))
+      .catch(err => console.log(err));
+    
+    // 定义 Schema 和 Model
+    const messageSchema = new mongoose.Schema({
+      text: String
+    });
+    const Message = mongoose.model('Message', messageSchema);
+    
+    // 路由 - 获取存储的消息
+    app.get('/api/message', async (req, res) => {
+      const messages = await Message.find(); // 获取所有消息
+      res.json(messages);
+    });
+    
+    // 路由 - 存储新消息
+    app.post('/api/message', async (req, res) => {
+      const { text } = req.body;
+      const newMessage = new Message({ text });
+      await newMessage.save(); // 保存新消息到数据库
+      res.json(newMessage); // 返回存储的消息
+    });
+    
+    // 启动服务器
+    app.listen(5001, () => {
+      console.log('Server running on http://localhost:5001');
+    });
+    
+    ```
 
-### 2. backend : 
-[setup-backend](./hello-backend/setup-backend.md)
+4. 向 MongoDB 插入 "hello node" 数据
 
-## deploy project setps:
+    确保已安装MongoDB服务器：https://www.mongodb.com/zh-cn/docs/manual/tutorial/install-mongodb-on-os-x/
 
-### 1. frontend : 
-[deploy-frontend](./hello-frontend/deploy-frontend.md)
+    使用 MongoDB Compass 图形工具或者在 Mongo Shell 中插入数据：
 
-### 2. backend : 
-[deploy-backend](./hello-backend/deploy-backend.md)
+    ```bash
+    use mydb
+    db.messages.insert({ text: "hello node" })
+    ```
+
+5. 启动服务器
+
+    1. 先连接MongoDB数据库
+
+    2. 启动后端服务器
+
+        ```bash
+        node server.js
+        ```
+
+        

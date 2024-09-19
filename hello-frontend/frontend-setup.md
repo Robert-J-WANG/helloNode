@@ -1,30 +1,121 @@
-# Model 1: React + Express
+## React.js setup steps
 
-## frontend : React.js
+1. 初始化项目
 
-In the project directory, you can run:
+    项目文件夹下使用脚手架创建react app
 
-### `npm start`
+    ```bash
+    npx create-react-app frontend
+    cd frontend
+    ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. 安装 Axios 进行 API 请求
 
-## backend : Express.js
+    前端项目目录frontend下进入终端，执行
 
-### database : Mongo DB
+    ```bash
+    npm install axios
+    ```
 
-In the project directory, you can run:
+    **Axios**: 用于发送api请求。
 
-### `node server.js`
+3. 创建前端页面组件
 
-Runs the app serser in the development mode.\
-Open [http://localhost:5001](http://localhost:5001) 
+    编辑 `src/App.js`，发送请求获取 "hello node" 消息并显示在页面中：
 
-## deploy
-### frontend deploy on gitHub Pages
-### backend deploy on heroku
+    ```js
+    import React, { useEffect, useState } from 'react';
+    import axios from 'axios';
+    
+    function App() {
+      const [messages, setMessages] = useState([]);
+      const [newMessage, setNewMessage] = useState('');
+    
+      // 获取所有消息
+      useEffect(() => {
+        axios.get('http://localhost:5001/api/message')
+          .then(response => {
+            setMessages(response.data); // 设置获取到的消息
+          })
+          .catch(error => {
+            console.error('Error fetching the messages:', error);
+          });
+      }, []);
+    
+      // 处理输入框变化
+      const handleInputChange = (e) => {
+        setNewMessage(e.target.value);
+      };
+    
+      // 提交新消息
+      const handleSubmit = () => {
+        if (newMessage.trim()) {
+          axios.post('http://localhost:5001/api/message', { text: newMessage })
+            .then(response => {
+              setMessages([...messages, response.data]); // 更新消息列表
+              setNewMessage(''); // 清空输入框
+            })
+            .catch(error => {
+              console.error('Error posting the message:', error);
+            });
+        }
+      };
+    
+      return (
+        <div>
+          <h1>Messages</h1>
+          <ul>
+            {messages.map((message, index) => (
+              <li key={index}>{message.text}</li>
+            ))}
+          </ul>
+          <div>
+            <input
+              type="text"
+              value={newMessage}
+              onChange={handleInputChange}
+              placeholder="Enter a message"
+            />
+            <button onClick={handleSubmit}>Submit</button>
+          </div>
+        </div>
+      );
+    }
+    
+    export default App;
+    
+    ```
 
-## setup project setps:
-### 1. frontend : 
-[setup-frontend](./)
-### frontend deploy on gitHub Pages
+4. 启动 React 前端
+
+    在 frontend` 项目目录中启动开发服务器：
+
+     ```bash
+     npm start
+     ```
+
+    React 应用会在 `http://localhost:3000` 运行。
+
+5. 运行和测试
+
+    1. 确保 MongoDB 服务器已启动，并且数据库中已插入 `"hello node"`。
+
+    2. 在 `backend` 项目中启动 Express 服务器：
+
+    ```bash
+    node server.js
+    ```
+
+    3. 确保前后端通信正常（React 前端运行在 `http://localhost:3000`，Express 后端运行在 `http://localhost:5001`）。
+
+6. 页面显示实例：
+
+    1. 页面渲染
+
+        ![1](./src/assets/image.png)
+
+        
+    
+    2. 数据库
+    
+        ![2](./src/assets/image2.png)
