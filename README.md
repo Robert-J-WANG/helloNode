@@ -2,7 +2,7 @@
 
 ## Overview
 
-### frontend : React.js
+### 1. frontend : React.js
 
 In the project directory, you can run:
 
@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 #### deploy on `gitHub Pages`
 
-### backend : Express.js
+### 2. backend : Express.js
 
 #### database : Mongo DB
 
