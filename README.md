@@ -1,4 +1,4 @@
-# part1: to practice frondend + backend
+# Model 1: React + Express
 
 ## frontend : React.js
 
@@ -11,6 +11,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## backend : Express.js
 
+### database : Mongo DB
+
 In the project directory, you can run:
 
 ### `node server.js`
@@ -21,3 +23,4 @@ Open [http://localhost:5001](http://localhost:5001)
 ## deploy
 ### frontend deploy on gitHub Pages
 ### backend deploy on heroku
+
